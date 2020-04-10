@@ -1,8 +1,8 @@
 public class Vehiculo{
     
-    public static Vehiculo[] vehiculos;
-    public static int tamano;
-    public static int posAnadir;
+    public static Vehiculo[] vehiculos = new Vehiculo[10];
+    public static int tamano = 10;
+    public static int posAnadir = 0;
     private int modelo;
     private String marca;
     private double valorComercial;
