@@ -13,8 +13,7 @@
         public Sensor(String t, double v){
             this.tipo=t;
             this.valor=v;
-            //sensores[posAnadir].setTipo(t);
-            //sensores[posAnadir].setValor(v);
+            sensores[posAnadir] = this;
             posAnadir++;
         }
         
@@ -35,13 +34,14 @@
         }
         
         public String toString(){
-            return "Informacion Sensor: (Tipo: "+this.tipo+". Valor: "+
-                    this.valor+")";
+            return "|***** Informacion Sensor *****|\n"+
+                   " Tipo: "+this.tipo+
+                   " Valor: "+this.valor;
         }
         
         public static String toStringSensores(Sensor[] s){
             String res="";
-            for(int i=0; i<tamano; i++){
+            for(int i=0; i<posAnadir; i++){
                 res=s[i].toString()+"n/";
             }
             return res;
