@@ -17,14 +17,14 @@ public class Vehiculo{
     }
     
     public Vehiculo(int mo, String ma, double va, String co){
-        //this.modelo=mo;
-        //this.marca=ma;
-        //this.valorComercial=va;
-        //this.color=co;
-        vehiculos[posAnadir].setModelo(mo);
-        vehiculos[posAnadir].setMarca(ma);
-        vehiculos[posAnadir].setValorComercial(va);
-        vehiculos[posAnadir].setColor(co);
+        this.modelo=mo;
+        this.marca=ma;
+        this.valorComercial=va;
+        this.color=co;
+        //vehiculos[posAnadir].setModelo(mo);
+        //vehiculos[posAnadir].setMarca(ma);
+        //vehiculos[posAnadir].setValorComercial(va);
+        //vehiculos[posAnadir].setColor(co);
         posAnadir++;
     }
     
@@ -68,14 +68,17 @@ public class Vehiculo{
     
     public static String toStringVehiculos(Vehiculo[] v){
         String res="";
+        String temp="";
         for(int i=0; i<tamano; i++){
-            res=v[i].toString()+"n/";
+            temp = v[i].toString();
+            res=res+temp+"n/";
         }
         return res;
     }
     
     public static Vehiculo[] seleccionColor(Vehiculo[] v, String c){
         int cont = 0;
+        int j = 0;
         Vehiculo [] seleccion;
         for(int i = 0; i < v.length; i++){
             if(v[i].getColor().equalsIgnoreCase(c)){
@@ -83,11 +86,10 @@ public class Vehiculo{
             }
         }
         seleccion = new Vehiculo [cont];
-        cont = 0;
         for(int i = 0; i < v.length; i++){
             if(v[i].getColor().equalsIgnoreCase(c)){
-                seleccion[cont]=v[i];
-                cont++; 
+                seleccion[j]=v[i];
+                j++; 
             }
         }        
         return seleccion;

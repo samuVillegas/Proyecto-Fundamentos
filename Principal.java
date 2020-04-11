@@ -20,9 +20,7 @@ public class Principal{
                         double va = scan.nextDouble();
                         System.out.println("Color: ");
                         String co = scan.next();
-                        Vehiculo v= new Vehiculo(mo,ma,va,co); //No se como hacer para que
-                                                               //cada vez se le cambie el 
-                                                               //nombre
+                        Vehiculo.vehiculos[Vehiculo.posAnadir]=new Vehiculo(mo,ma,va,co);
                     }else{
                         System.out.println("ERROR: Base de datos llena");
                     }
@@ -57,6 +55,7 @@ public class Principal{
                         Sensor s= new Sensor(t,v); //No se como hacer para que
                                                    //cada vez se le cambie el 
                                                    //nombre x2
+                        Sensor.sensores[Sensor.posAnadir]=new Sensor(t,v);
                     }else{
                         System.out.println("ERROR: Base de datos llena");
                     }
