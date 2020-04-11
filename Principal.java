@@ -47,7 +47,7 @@ public class Principal{
                     System.out.println(Vehiculo.toStringVehiculos(Vehiculo.vehiculos));
                 break;
                 case 3:
-                    System.out.println(Vehiculo.cantidadVehiculos());
+                    System.out.println("Cantidad vehiculos: "+Vehiculo.cantidadVehiculos());
                 break;
                 case 4:
                     System.out.println(Vehiculo.toStringVehiculos(Vehiculo.seleccionColor(Vehiculo.vehiculos,"Verde")));
@@ -68,7 +68,7 @@ public class Principal{
                     System.out.println(Sensor.toStringSensores(Sensor.sensores));
                 break;
                 case 7:
-                    System.out.println(Sensor.cantidadSensores());
+                    System.out.println("Cantidad sensores: "+Sensor.cantidadSensores());
                 break;
               	case 8:
                      System.out.println(Sensor.toStringSensores(Sensor.seleccionTipo(Sensor.sensores,"Temperatura")));

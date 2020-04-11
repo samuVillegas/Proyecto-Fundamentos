@@ -36,13 +36,17 @@
         public String toString(){
             return "|***** Informacion Sensor *****|\n"+
                    " Tipo: "+this.tipo+
-                   " Valor: "+this.valor;
+                   " \n Valor: "+this.valor;
         }
         
         public static String toStringSensores(Sensor[] s){
             String res="";
-            for(int i=0; i<posAnadir; i++){
-                res=s[i].toString()+"n/";
+            for(int i=0; i<s.length; i++){
+                if (s[i]!=null) {
+                    res+=s[i].toString()+"\n";
+                }else{
+                    break;
+                }
             }
             return res;
         }
@@ -51,13 +55,13 @@
             int cont = 0;
             int j = 0;
             Sensor [] seleccion;
-            for(int i = 0; i < s.length; i++){
+            for(int i = 0; i < posAnadir; i++){
                 if(s[i].getTipo().equalsIgnoreCase(t)){
                     cont++;
                 }
             }
             seleccion = new Sensor [cont];
-            for(int i = 0; i < s.length; i++){
+            for(int i = 0; i < posAnadir; i++){
                 if(s[i].getTipo().equalsIgnoreCase(t)){
                     seleccion[j]=s[i];
                     j++; 
@@ -70,11 +74,11 @@
             Sensor [] ans = s;
             int n = s.length;
             Sensor temp;
-            for(int i = 1; i < n; i++){
-                for(int j = 0; j<n-i;j++){
+            for(int i = 0; i < n-1; i++){
+                for(int j = 0; j<n-1-i;j++){
                     if(ans[j].getValor()>ans[j+1].getValor()){
-                        temp = ans[j];
-                        ans[j]=ans[j+1];
+                        temp = ans[j+1];
+                        ans[j]=ans[j];
                         ans[j+1]=temp;
                     }
                 }
