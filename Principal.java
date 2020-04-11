@@ -9,27 +9,27 @@ public class Principal{
       	boolean flag = true;
         while (flag){
             System.out.println("\n|******************************* MENÚ ******************************|\n"+
-                               "¿Qué deseas hacer?\n"+
-                               "Ingrese el numero de la opción a realizar\n"+
-                               "  1) Registrar vehículo\n"+
-                               "  2) Mostrar información de vehículos almacenados\n"+
-                               "  3) Mostrar la información de la cantitad vehículos creadas\n"+
-                               "  4) Mostrar por pantalla la información de todos los vehículos\n"+
-                               "     de color Verde\n"+
-                               "  5) Registrar sensor\n"+
-                               "  6) Mostrar información de sensores almacenados\n"+
-                               "  7) Mostrar la información de la cantitad de sensores creados\n"+
-                               "  8) Mostrar por pantalla la información de todos los sesores de \n"+
-                               "     tipo temperatura\n"+
-                               "666) Mostrar por pantalla la información de todos los sesores de\n"+
-                               "     tipo temperatura ordenados por valor\n"+
-                               "  0) Salir del programa\n"+
+                               "|*************************¿Qué deseas hacer?************************|\n"+
+                               " Ingrese el numero de la opción a realizar:\n"+
+                               "   1) Registrar vehículo.\n"+
+                               "   2) Mostrar información de vehículos almacenados.\n"+
+                               "   3) Mostrar la información de la cantitad vehículos creadas.\n"+
+                               "   4) Mostrar por pantalla la información de todos los vehículos\n"+
+                               "      de color Verde.\n"+
+                               "   5) Registrar sensor.\n"+
+                               "   6) Mostrar información de sensores almacenados.\n"+
+                               "   7) Mostrar la información de la cantitad de sensores creados.\n"+
+                               "   8) Mostrar por pantalla la información de todos los sesores de \n"+
+                               "      tipo temperatura.\n"+
+                               " 666) Mostrar por pantalla la información de todos los sensores de\n"+
+                               "      tipo temperatura ordenados por valor.\n"+
+                               "   0) Salir del programa.\n"+
                                "|********************************************************************|\n");
             int ans = scan.nextInt();
           	switch(ans){ 
                 case 1:
                     if(Vehiculo.posAnadir<Vehiculo.tamano){
-                        System.out.println("Ingrese las caracteristicas de su vehiculo:");
+                        System.out.println("Ingrese las caracteristicas de su vehiculo.");
                         System.out.println("Modelo:");
                         int mo = scan.nextInt();
                         System.out.println("Marca:");
@@ -40,7 +40,7 @@ public class Principal{
                         String co = scan.next();
                       	Vehiculo v = new Vehiculo(mo,ma,va,co);
                     }else{
-                        System.out.println("SYSTEM ERROR: Base de datos llena");
+                        System.out.println("SYSTEM ERROR: Base de datos llena.");
                     }
                 break;
                 case 2:
@@ -54,14 +54,14 @@ public class Principal{
                 break;
                 case 5:
                     if(Sensor.posAnadir<Sensor.tamano){
-                        System.out.println("Ingrese las caracteristicas de su sensor:");
+                        System.out.println("Ingrese las caracteristicas de su sensor.");
                         System.out.println("Tipo:");
                         String t = scan.next();
                         System.out.println("Valor: ");
                         double v = scan.nextDouble();
                         Sensor s = new Sensor(t,v);
                     }else{
-                        System.out.println("SYSTEM ERROR: Base de datos llena");
+                        System.out.println("SYSTEM ERROR: Base de datos llena.");
                     }
                 break;
                 case 6:
@@ -80,10 +80,9 @@ public class Principal{
                     flag = false;	
                 break;
               	default:
-                System.out.print("Por favor ingresa un numero valido");
+                System.out.print("Por favor ingresa un numero valido.");
                 break;
             }
-         	
         }
     }
 }

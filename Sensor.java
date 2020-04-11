@@ -13,7 +13,7 @@
         public Sensor(String t, double v){
             this.tipo=t;
             this.valor=v;
-            sensores[posAnadir] = this;
+            sensores[posAnadir]=this;
             posAnadir++;
         }
         
@@ -52,16 +52,16 @@
         }
         
         public static Sensor[] seleccionTipo(Sensor[] s, String t){
-            int cont = 0;
-            int j = 0;
+            int cont=0;
+            int j=0;
             Sensor [] seleccion;
-            for(int i = 0; i < posAnadir; i++){
+            for(int i=0; i<posAnadir; i++){
                 if(s[i].getTipo().equalsIgnoreCase(t)){
                     cont++;
                 }
             }
             seleccion = new Sensor [cont];
-            for(int i = 0; i < posAnadir; i++){
+            for(int i = 0; i<posAnadir; i++){
                 if(s[i].getTipo().equalsIgnoreCase(t)){
                     seleccion[j]=s[i];
                     j++; 
@@ -74,10 +74,10 @@
             Sensor [] ans = s;
             int n = s.length;
             Sensor temp;
-            for(int i = 0; i < n-1; i++){
-                for(int j = 0; j<n-1-i;j++){
+            for(int i=0; i<n-1; i++){
+                for(int j=0; j<n-1-i; j++){
                     if(ans[j].getValor()>ans[j+1].getValor()){
-                        temp = ans[j+1];
+                        temp=ans[j+1];
                         ans[j]=ans[j];
                         ans[j+1]=temp;
                     }

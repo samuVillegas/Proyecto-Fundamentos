@@ -78,16 +78,16 @@ public class Vehiculo{
     }
     
     public static Vehiculo[] seleccionColor(Vehiculo[] v, String c){
-        int cont = 0;
-        int j = 0;
+        int cont=0;
+        int j=0;
         Vehiculo [] seleccion;
-        for(int i = 0; i < posAnadir; i++){
+        for(int i=0; i<posAnadir; i++){
             if(v[i].getColor().equalsIgnoreCase(c)){
                 cont++;
             }
         }
         seleccion = new Vehiculo [cont];
-        for(int i = 0; i < posAnadir; i++){
+        for(int i=0; i<posAnadir; i++){
             if(v[i].getColor().equalsIgnoreCase(c)){
                 seleccion[j]=v[i];
                 j++; 
