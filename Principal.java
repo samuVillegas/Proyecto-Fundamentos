@@ -6,7 +6,7 @@ public class Principal{
 
     public static void mostrarMenu(){
         Scanner scan = new Scanner(System.in);
-      	boolean flag = true;
+        boolean flag = true;
         while (flag){
             System.out.println("\n|******************************* MENÚ ******************************|\n"+
                                "|*************************¿Qué deseas hacer?************************|\n"+
@@ -26,7 +26,7 @@ public class Principal{
                                "   0) Salir del programa.\n"+
                                "|********************************************************************|\n");
             int ans = scan.nextInt();
-          	switch(ans){ 
+            switch(ans){ 
                 case 1:
                     if(Vehiculo.posAnadir<Vehiculo.tamano){
                         System.out.println("Ingrese las caracteristicas de su vehiculo.");
@@ -38,7 +38,7 @@ public class Principal{
                         double va = scan.nextDouble();
                         System.out.println("Color: ");
                         String co = scan.next();
-                      	Vehiculo v = new Vehiculo(mo,ma,va,co);
+                        Vehiculo v = new Vehiculo(mo,ma,va,co);
                     }else{
                         System.out.println("SYSTEM ERROR: Base de datos llena.");
                     }
@@ -70,17 +70,22 @@ public class Principal{
                 case 7:
                     System.out.println("Cantidad sensores: "+Sensor.cantidadSensores());
                 break;
-              	case 8:
+                case 8:
                      System.out.println(Sensor.toStringSensores(Sensor.seleccionTipo(Sensor.sensores,"Temperatura")));
                 break;
                 case 666:
                     System.out.println(Sensor.toStringSensores(Sensor.ordenar(Sensor.seleccionTipo(Sensor.sensores,"Temperatura"))));
                 break;
                 case 0:
-                    flag = false;	
+                    System.out.println("\n|**************** Gracias por usar nuestro programa *****************|\n"+
+                                       " Hecho por:\n"+
+                                       " -Dixon Andres Calderon Ortega.\n"+
+                                       " -Kevin Alejandro Sossa Chaverria.\n"+
+                                       " -Samuel David Villegas Bedoya.");
+                    flag = false;   
                 break;
-              	default:
-                System.out.print("Por favor ingresa un numero valido.");
+                default:
+                    System.out.print("Por favor ingresa un numero valido.");
                 break;
             }
         }

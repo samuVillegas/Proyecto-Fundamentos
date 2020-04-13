@@ -67,11 +67,15 @@ public class Vehiculo{
     
     public static String toStringVehiculos(Vehiculo[] v){
         String res="";
-        for(int i=0; i<v.length; i++){
-            if (v[i]!=null) {
-                res += v[i].toString()+"\n";
-            }else{
-                break;
+        if(posAnadir==0 || v.length >0){
+                res = "\n|*****No hay vehículos por mostrar. *****|\n";
+        }else{
+            for(int i=0; i<v.length; i++){
+                if (v[i]!=null) {
+                    res += v[i].toString()+"\n";
+                }else{
+                    break;
+                }
             }
         }
         return res;

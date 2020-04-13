@@ -41,11 +41,15 @@
         
         public static String toStringSensores(Sensor[] s){
             String res="";
-            for(int i=0; i<s.length; i++){
-                if (s[i]!=null) {
-                    res+=s[i].toString()+"\n";
-                }else{
-                    break;
+            if(posAnadir==0 || s.length >0){
+                res = "\n|*****No hay sensores por mostrar. *****|\n";
+            }else{
+                for(int i=0; i<s.length; i++){
+                    if (s[i]!=null) {
+                        res+=s[i].toString()+"\n";
+                    }else{
+                        break;
+                    }
                 }
             }
             return res;
