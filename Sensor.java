@@ -39,14 +39,35 @@
                    " \n Valor: "+this.valor;
         }
         
-        public static String toStringSensores(Sensor[] s){
+        public static String toStringSensores(String t){
             String res="";
-            if(posAnadir==0 || s.length ==0){
+            if(posAnadir==0){
                 res = "\n|*****No hay sensores por mostrar. *****|\n";
+            }else if(t.equalsIgnoreCase("all")){
+                for(int i=0; i<Sensor.sensores.length; i++){
+                    if (Sensor.sensores[i]!=null) {
+                        res+=Sensor.sensores[i].toString()+"\n";
+                    }else{
+                        break;
+                    }
+                }
+            }else if(t.equalsIgnoreCase("ord")){
+                Sensor SensoresOrd[] = Sensor.ordenar();
+                for(int i = 0; i < Sensor.posAnadir; i++){
+                    if (Sensor.sensores[i]!=null) {
+                        if(Sensor.sensores[i].getTipo().equalsIgnoreCase("temperatura")){
+                            res += Sensor.sensores[i].toString()+"\n";
+                        }
+                    }else{
+                        break;
+                    }
+                }
             }else{
-                for(int i=0; i<s.length; i++){
-                    if (s[i]!=null) {
-                        res+=s[i].toString()+"\n";
+                for(int i = 0; i < Sensor.sensores.length; i++){
+                    if (Sensor.sensores[i]!=null) {
+                        if(Sensor.sensores[i].getTipo().equalsIgnoreCase(t)){
+                            res += Sensor.sensores[i].toString()+"\n";
+                        }
                     }else{
                         break;
                     }
@@ -55,39 +76,20 @@
             return res;
         }
         
-        public static Sensor[] seleccionTipo(Sensor[] s, String t){
-            int cont=0;
-            int j=0;
-            Sensor [] seleccion;
-            for(int i=0; i<posAnadir; i++){
-                if(s[i].getTipo().equalsIgnoreCase(t)){
-                    cont++;
-                }
-            }
-            seleccion = new Sensor [cont];
-            for(int i = 0; i<posAnadir; i++){
-                if(s[i].getTipo().equalsIgnoreCase(t)){
-                    seleccion[j]=s[i];
-                    j++; 
-                }
-            }        
-            return seleccion;
-        }
-        
-        public static Sensor[] ordenar(Sensor[] s){
-            Sensor [] ans = s;
-            int n = s.length;
-            Sensor temp;
-            for(int i=0; i<n-1; i++){
-                for(int j=0; j<n-1-i; j++){
-                    if(ans[j].getValor()>ans[j+1].getValor()){
-                        temp=ans[j+1];
-                        ans[j]=ans[j];
-                        ans[j+1]=temp;
+        public static Sensor[] ordenar(){
+            Sensor [] SensoresOrd = Sensor.sensores;
+            int n = Sensor.posAnadir;
+            for (int i = 0; i < n - 1; i++){
+                Sensor temp;
+                for (int j = 0; j < n - 1 - i; j++){
+                    if (SensoresOrd[j].getValor() > SensoresOrd[j+1].getValor()) {
+                        temp = SensoresOrd[j+1];
+                        SensoresOrd[j+1] = SensoresOrd[j];
+                        SensoresOrd[j] = temp;
                     }
                 }
             }
-            return ans;
+            return SensoresOrd;
         }
         
         public static int cantidadSensores(){

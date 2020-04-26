@@ -9,7 +9,8 @@ public class Vehiculo{
     private String color;
     
     public Vehiculo(){
-        
+        Vehiculo.vehiculos[posAnadir] = this;
+        posAnadir++;
     }
     
     public Vehiculo(int mo, String ma, double va){
@@ -21,7 +22,7 @@ public class Vehiculo{
         this.marca=ma;
         this.valorComercial=va;
         this.color=co;
-        vehiculos[posAnadir] = this;
+        Vehiculo.vehiculos[posAnadir] = this;
         posAnadir++;
     }
     
@@ -65,39 +66,30 @@ public class Vehiculo{
                "\n Color: "+this.color;
     }
     
-    public static String toStringVehiculos(Vehiculo[] v){
+    public static String toStringVehiculos(String c){
         String res="";
-        if(posAnadir==0 || v.length ==0){
+        if(posAnadir == 0){
                 res = "\n|*****No hay vehículos por mostrar. *****|\n";
+        }else if(c.equalsIgnoreCase("all")){
+            for(int i = 0; i < Vehiculo.vehiculos.length; i++){
+                if (Vehiculo.vehiculos[i]!=null) {
+                    res += Vehiculo.vehiculos[i].toString()+"\n";
+                }else{
+                    break;
+                }
+            }
         }else{
-            for(int i=0; i<v.length; i++){
-                if (v[i]!=null) {
-                    res += v[i].toString()+"\n";
+            for(int i = 0; i < Vehiculo.vehiculos.length; i++){
+                if (Vehiculo.vehiculos[i]!=null) {
+                    if(Vehiculo.vehiculos[i].getColor().equalsIgnoreCase(c)){
+                        res += Vehiculo.vehiculos[i].toString()+"\n";
+                    }
                 }else{
                     break;
                 }
             }
         }
         return res;
-    }
-    
-    public static Vehiculo[] seleccionColor(Vehiculo[] v, String c){
-        int cont=0;
-        int j=0;
-        Vehiculo [] seleccion;
-        for(int i=0; i<posAnadir; i++){
-            if(v[i].getColor().equalsIgnoreCase(c)){
-                cont++;
-            }
-        }
-        seleccion = new Vehiculo [cont];
-        for(int i=0; i<posAnadir; i++){
-            if(v[i].getColor().equalsIgnoreCase(c)){
-                seleccion[j]=v[i];
-                j++; 
-            }
-        }        
-        return seleccion;
     }
     
     public static int cantidadVehiculos(){
