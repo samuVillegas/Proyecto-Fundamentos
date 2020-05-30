@@ -81,7 +81,7 @@ public class Principal{
                 break;
                 case 8:
                      if(Vehiculo.cantidadVehiculos()!=0){
-                        System.out.print(Principal.SensoresTemperatura());
+                        System.out.print(Principal.SensoresTemperatura(false));
                     }else{
                         System.out.println( "\n|*****No hay vehiculos agregados. *****|\n"); 
                     }
@@ -97,8 +97,8 @@ public class Principal{
                 
                 break;
                 case 666:
-                    //El metodo toString no se ha creado
-                   // System.out.println(Sensor.toStringSensores("ord"));
+                    
+                   System.out.println(Principal.SensoresTemperatura(true));
                 break;
                 case 777:
                 
@@ -127,28 +127,51 @@ public class Principal{
     return Vehiculo.vehiculos.get(id-1);
   }
     
-  public static String SensoresTemperatura(){
+  
+  public static String SensoresTemperatura(boolean val ){
     String text = "";
+    ArrayList<Sensor> sensores = new ArrayList<>();
     
     for (Vehiculo vehiculo: Vehiculo.vehiculos){
-            int cant = vehiculo.cantidadSensores();
-        
+      int cant = vehiculo.cantidadSensores(); 
       if(cant != 0){
         for (Sensor sensor: vehiculo.getSensores()){
                 if(sensor.getTipo().equalsIgnoreCase("temperatura")){
-                    text+= sensor.toString();
+                    sensores.add(sensor);
                 } 
         }      
       }             
     } 
-    
+   
+    if(!sensores.isEmpty()){
+        if(val){
+         Sensor temp;
+         int n = sensores.size();
 
-    
-    if(text.isEmpty()){
-      text="\n|*****No hay sensores por mostrar. *****|\n";
+         for(int i=1; i<n;i++){
+            for(int j =0; j<n-1;j++){
+		if(sensores.get(j).getValor()>sensores.get(j+1).getValor()){
+			temp = sensores.get(j);
+			sensores.set(j,sensores.get(j+1));
+			sensores.set(j+1,temp);		
+		}
+            }	
+
+         }
+        }
+        
+        for(Sensor sensor: sensores){
+            text+=sensor.toString()+"\n";
+        }
+      
+    }else{
+        text="\n|*****No hay sensores por mostrar. *****|\n";
     }      
-        return text;
+        
+    return text;
   }
+  
+  
        
   public static String MasSensores(){
     String text = "\n|*****Los vehiculos no tienen sensores. *****|\n";
