@@ -1,98 +1,124 @@
-public class Vehiculo{
-    
-    public static Vehiculo[] vehiculos = new Vehiculo[10];
-    public static int tamano = 10;
-    public static int posAnadir = 0;
-    private int modelo;
-    private String marca;
-    private double valorComercial;
-    private String color;
-    
-    public Vehiculo(){
-        Vehiculo.vehiculos[posAnadir] = this;
-        posAnadir++;
-    }
-    
-    public Vehiculo(int mo, String ma, double va){
-        this(mo,ma,va,"Verde");
-    }
-    
-    public Vehiculo(int mo, String ma, double va, String co){
-        this.modelo=mo;
-        this.marca=ma;
-        this.valorComercial=va;
-        this.color=co;
-        Vehiculo.vehiculos[posAnadir] = this;
-        posAnadir++;
-    }
-    
-    public void setModelo(int mo){
-        this.modelo=mo;
-    }
-    
-    public int getModelo(){
-        return modelo;
-    }
-    
-    public void setMarca(String ma){
-        this.marca=ma;
-    }
-    
-    public String getMarca(){
-        return marca;
-    }
-    
-    public void setValorComercial(double va){
-        this.valorComercial=va;
-    }
-    
-    public double getValorComercial(){
-        return valorComercial;
-    }
-    
-    public void setColor(String co){
-        this.color=co;
-    }
-    
-    public String getColor(){
-        return color;
-    }
-    
-    public String toString(){
-        return "|*****Informacion Vehiculo *****|\n"+
-               " Modelo: "+this.modelo+
-               "\n Marca: "+this.marca+
-               "\n Valor Comercial: "+this.valorComercial+
-               "\n Color: "+this.color;
-    }
-    
-    public static String toStringVehiculos(String c){
-        String res="";
-        if(posAnadir == 0){
-                res = "\n|*****No hay vehículos por mostrar. *****|\n";
-        }else if(c.equalsIgnoreCase("all")){
-            for(int i = 0; i < Vehiculo.vehiculos.length; i++){
-                if (Vehiculo.vehiculos[i]!=null) {
-                    res += Vehiculo.vehiculos[i].toString()+"\n";
-                }else{
-                    break;
-                }
-            }
-        }else{
-            for(int i = 0; i < Vehiculo.vehiculos.length; i++){
-                if (Vehiculo.vehiculos[i]!=null) {
-                    if(Vehiculo.vehiculos[i].getColor().equalsIgnoreCase(c)){
-                        res += Vehiculo.vehiculos[i].toString()+"\n";
-                    }
-                }else{
-                    break;
-                }
-            }
+    import java.util.ArrayList;
+    public class Vehiculo{
+      
+      public static ArrayList<Vehiculo> vehiculos = new ArrayList<>(); 
+      private ArrayList<Sensor> sensores = new ArrayList<>(); 
+      public static int idActual = 1;
+      private int id;
+      private int modelo;
+      private String marca;
+      private double valorComercial;
+      private String color;
+      
+      public Vehiculo(){
+        this.id=idActual;
+        vehiculos.add(this);
+        idActual++;
+      }
+      
+      public Vehiculo(int mo, String ma, double va){
+            this(mo,ma,va,"Verde");
+      }
+      public Vehiculo(int mo, String ma, double va, String co){
+            this.modelo=mo;
+            this.marca=ma;
+            this.valorComercial=va;
+            this.color=co;
+                this.id=idActual;
+                vehiculos.add(this);
+      }
+      public void setModelo(int mo){
+          this.modelo=mo;
+      }
+        
+      public int getModelo(){
+          return modelo;
+      }
+        
+      public void setMarca(String ma){
+          this.marca=ma;
+      }
+        
+      public String getMarca(){
+          return marca;
+      }
+        
+      public void setValorComercial(double va){
+          this.valorComercial=va;
+      }
+        
+      public double getValorComercial(){
+          return valorComercial;
+      }
+        
+      public void setColor(String co){
+          this.color=co;
+      }
+        
+      public String getColor(){
+          return this.color;
+      }
+      
+      public void setId(int id){
+        this.id=id;
+      }
+        
+      public int getId(){
+          return this.id;
+      }
+      
+      public ArrayList<Sensor> getSensores(){
+        return this.sensores;
+      }
+      
+      public void setSensores(ArrayList sen){
+        this.sensores=sen;
+      } 
+      
+      public String toString(){
+            String text = "";
+        text = String.format("__________ Informacion Vehiculo __________ \n"+
+                             "| Modelo: %-32s|\n"+
+                                     "| Marca: %-33s|\n"+
+                                     "| Valor Comercial: %-23s|\n"+
+                                     "| Color: %-33s|\n"+
+                             "'—————————————————————————————————————————'\n",this.modelo,this.marca,this.valorComercial,this.color)+
+                                             " *********** Lista de sensores *********** \n";
+        for (Sensor sensor: this.sensores){
+            text+= sensor.toString()+"\n";
         }
-        return res;
-    }
-    
-    public static int cantidadVehiculos(){
-        return posAnadir;
-    }
+        return text;
+      }
+      
+      public static String toStringVehiculos(String c){
+        String text = "";
+        if(Vehiculo.vehiculos.size()==0){
+            text = "\n|*****No hay vehiculos por mostrar. *****|\n";
+            
+        }else if(c.equalsIgnoreCase("all")){
+            for (Vehiculo vehiculo: Vehiculo.vehiculos){
+                text += vehiculo.toString()+"\n";
+            }       
+        }else{        
+          for (Vehiculo vehiculo: Vehiculo.vehiculos){
+                if(vehiculo.getColor().equalsIgnoreCase(c)){
+                text += vehiculo.toString()+"\n";
+          }
+        }       
+      }    
+      return text;
+     }
+  
+  public static int cantidadVehiculos(){
+    return Vehiculo.vehiculos.size();
+  }
+  
+  public int cantidadSensores(){
+    return this.sensores.size();
+  }
+  
+  public void anadirSensor(Sensor sensor){
+    this.sensores.add(sensor);
+  }
+   
 }
