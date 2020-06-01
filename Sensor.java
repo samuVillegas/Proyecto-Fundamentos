@@ -2,7 +2,6 @@
 public class Sensor{
     private String tipo;
     private double valor;
-    //private Vehiculo vehiculo;
   
     public Sensor(){
         this("",0);

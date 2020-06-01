@@ -1,0 +1,5 @@
+2020,tesla,3000000,rojo
+3,tesla,4000000,negro
+1900,chevrolet,300000,verde
+2000,renault,500000,azul
+2001,renault,600000,verde

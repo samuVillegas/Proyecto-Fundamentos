@@ -114,7 +114,7 @@ public class Principal{
                     }
                 break;
                 case 10:
-                
+                    leerTxt();
                 break;
                 case 666:
                    System.out.println(Principal.SensoresTemperatura(true));
@@ -188,13 +188,14 @@ public class Principal{
     }
     
     public static void leerTxt(){
-        // no terminado
-        File file = new File("carros.txt");
+        File file = new File("vehiculos.txt");
         try {
             Scanner txt = new Scanner(file);
             while (txt.hasNextLine()) {
                 String line[] = txt.nextLine().split(",");
+                new Vehiculo(Integer.parseInt(line[0]),line[1],Double.parseDouble(line[2]),line[3]);
             }
+            System.out.println("Vehiculos cargados correctamente");
         } catch (Exception e) {
             System.out.println("No pude leer el txt");
         }
