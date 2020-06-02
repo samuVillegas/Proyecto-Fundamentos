@@ -3,6 +3,7 @@ import java.net.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.*;
+import java.text.DecimalFormat;
 
 public class Principal{
     public static void main(String[] args){
@@ -203,90 +204,53 @@ public class Principal{
     }
 
     public static void carroYa(){
-        try{
+            try {
            String ruta= "https://www.carroya.com/buscar/vehiculos/t4d2c239.do";
            URL url = new URL (ruta);
            BufferedReader reader = new BufferedReader (new InputStreamReader(url.openStream()));
            String codigoFuente = "";
            String linea;
+           String cad="";
            while((linea = reader.readLine()) != null){
-               codigoFuente = codigoFuente + linea;
-           }
+               codigoFuente += linea;
+           }         
            reader.close();
            
-           String flag = "<div class=\"new-vehicle-heading\">";
-            
-           String keyMarca0 = "<span itemprop=\"name\" class=\"hidden\">";
-           String keyMarca1 = "</span>"; 
-           int i = codigoFuente.indexOf(keyMarca0);
-               System.out.println(i);
-           String keyModelo0 = "<span class=\"new-vehicle-model text-primary\">";
-           String keyModelo1 = "</span>";
-           
-           String keyValorComercial0 = "<div class=\"new-vehicle-price text-primary\" itemprop=\"price\">";
-           String keyValorComercial1 = "</div>";
-           
-           //int i = 1;
-           i = 1;
-           System.out.println(i);
-           System.out.println(codigoFuente);
-           while(codigoFuente.length()>0|| i == 0){
-               String marca = "";
-               int modelo = 0;
-               double valorComercial = 0;
+            //Busqueda
+            int com,fin,modelo;
+            String marca;
+            double valor;
+            int key = codigoFuente.indexOf("div class=\"imagenconten\"");      
+            String KEY0 ="data-price=\"";
+            String KEY1 ="data-brand=\"";
+            String KEY2 ="data-ano=\"";
+            String KEYFINAL="\"";
+            while(true){
+                com =codigoFuente.indexOf(KEY0,key)+KEY0.length();
+                fin =codigoFuente.indexOf(KEYFINAL,com);
+                valor = Double.parseDouble(codigoFuente.substring(com,fin));
                
-               i = codigoFuente.indexOf(keyMarca0);
-               System.out.println(i);
-               if(i>0){
-                   i = i +keyMarca0.length();
-                   int j = codigoFuente.indexOf(keyMarca1, i);
-                   marca = codigoFuente.substring(i, j);
-                   
-                   System.out.println(marca);
-                   
-                   codigoFuente = codigoFuente.substring(j + keyMarca1.length());
-               }
+                com = codigoFuente.indexOf(KEY1,key)+KEY1.length();
+                fin = codigoFuente.indexOf(KEYFINAL,com);       
+                marca = codigoFuente.substring(com,fin); 
                 
-               i = codigoFuente.indexOf(keyModelo0); 
-               System.out.println(i);
-               if(i>0){    
-                   i = 1 +keyModelo0.length();
-                   int j = codigoFuente.indexOf(keyModelo1, i);
-                   String modelo0 = codigoFuente.substring(i, j);
-                   codigoFuente = codigoFuente.substring(j + keyModelo1.length());
-                   modelo = Integer.parseInt(modelo0);
-                   
-                   System.out.println(modelo0);
-                   System.out.println(modelo);
-               } 
+                com =codigoFuente.indexOf(KEY2,key)+KEY2.length();
+                fin =codigoFuente.indexOf(KEYFINAL,com);       
+                modelo = Integer.parseInt(codigoFuente.substring(com, fin));
                 
-               i = codigoFuente.indexOf(keyValorComercial0);
-               System.out.println(i);
-               if(i>0){   
-                   i = i +keyValorComercial0.length();
-                   int j = codigoFuente.indexOf(keyValorComercial1, i);
-                   String valorComercial0 = codigoFuente.substring(i, j);
-                   codigoFuente = codigoFuente.substring(j + keyValorComercial1.length());
-                   
-                   System.out.println(valorComercial0);
-                   
-                   valorComercial0.replace("$","").replace(" ","").replace("\"","").replace("&nbsp;","").replace(",","");
-                   
-                   System.out.println(valorComercial0);
-                   
-                   valorComercial = Double.parseDouble(valorComercial0);
-                   
-                   System.out.println(valorComercial);
-               }else{ 
-                   break;
-               }
-               System.out.println(modelo);
-               System.out.println(marca);
-               System.out.println(valorComercial);
-               //Vehiculo v = new Vehiculo(modelo, marca, valorComercial);
+                Vehiculo v = new Vehiculo(modelo,marca,valor);
+                
+                key = codigoFuente.indexOf("div class=\"imagenconten\"",fin);
+            
+           if(key==-1){
+                break;
            }
-        }catch ( Exception e ){
-           System.out.println("No se pudo cargar los vehiculos de la pagina web.");
+       } 
+           
+           
+           
+        } catch (Exception e) {
+            System.out.println("Error");
         }
     }
 }  
