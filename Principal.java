@@ -3,7 +3,6 @@ import java.net.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.*;
-import java.text.DecimalFormat;
 
 public class Principal{
     public static void main(String[] args){

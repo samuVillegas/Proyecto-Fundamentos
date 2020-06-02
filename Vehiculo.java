@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 public class Vehiculo {
     public static ArrayList<Vehiculo> vehiculos = new ArrayList<>(); 
     private ArrayList<Sensor> sensores = new ArrayList<>(); 
@@ -79,12 +80,13 @@ public class Vehiculo {
      
     public String toString(){
         String text = "";
+        DecimalFormat num = new DecimalFormat("#,###.00");
         text = String.format("__________ Informacion Vehiculo __________ \n"+
                              "| Modelo: %-32s|\n"+
                                      "| Marca: %-33s|\n"+
                                      "| Valor Comercial: %-23s|\n"+
                                      "| Color: %-33s|\n"+
-                             "'—————————————————————————————————————————'\n",this.modelo,this.marca,this.valorComercial,this.color)+
+                             "'—————————————————————————————————————————'\n",this.modelo,this.marca,num.format(this.valorComercial),this.color)+
                              " *********** Lista de sensores *********** \n";
         for (Sensor sensor: this.sensores){
             text+= sensor.toString()+"\n";
