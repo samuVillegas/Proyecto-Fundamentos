@@ -1,8 +1,9 @@
-// ***** Clase Principal *****
 import java.net.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.*;
+import java.util.InputMismatchException;
+
 
 public class Principal{
     public static void main(String[] args){
@@ -12,6 +13,7 @@ public class Principal{
     public static void mostrarMenu(){
         Scanner scan = new Scanner(System.in);
         boolean flag = true;
+        
         while (flag){
             System.out.print("\n________________________________ MENÚ ______________________________\n"+
                                "| Ingrese el numero de la opción a realizar:                        |\n"+
@@ -23,7 +25,7 @@ public class Principal{
                                "|      de color Verde.                                              |\n"+
                                "|   5) Mostrar informacion de vehiculo segun su Id.                 |\n"+
                                "|   6) Añadir sensor a vehiculo especifico.                         |\n"+
-                               "|   7) Mostrar sensores de un vehiculo especifico.   |\n"+
+                               "|   7) Mostrar sensores de un vehiculo especifico.                  |\n"+
                                "|   8) Mostrar por pantalla la información de todos los sesores de  |\n"+
                                "|      tipo temperatura.                                            |\n"+
                                "|   9) Mostrar por pantalla la información del vehiculo con mas     |\n"+
@@ -34,6 +36,7 @@ public class Principal{
                                "| 777) Añadir los vehiculos enlistados en carroya.com.              |\n"+
                                "'———————————————————————————————————————————————————————————————————'\n"+
                                "¿Que deseas hacer?: ");
+            try{
             int ans = scan.nextInt();
             System.out.println();
             switch(ans){
@@ -46,7 +49,8 @@ public class Principal{
                                          "'——————————————————————————————————————————'");
                     flag = false;   
                 break;
-                case 1:              
+                case 1: 
+                    try{
                         System.out.println("Ingrese las caracteristicas de su vehiculo");
                         System.out.print("Modelo: ");
                         int mo = scan.nextInt();
@@ -57,6 +61,11 @@ public class Principal{
                         System.out.print("Color: ");
                         String co = scan.next();
                         Vehiculo v = new Vehiculo(mo,ma,va,co);
+                    }catch (Exception e ){
+                    
+                    
+                    }          
+                        
                 break;
                 case 2:
                     System.out.println(Vehiculo.toStringVehiculos("all"));
@@ -128,6 +137,10 @@ public class Principal{
                     System.out.print("Por favor ingresa un numero valido.");
                 break;
             }
+          }catch(InputMismatchException e){
+                System.out.println("ERROR, Ingresaste un dato invalido");
+                scan.nextLine();
+          }
         }
     }
     public static Vehiculo ObtenerVehiculoPorId(){
@@ -203,7 +216,7 @@ public class Principal{
     }
 
     public static void carroYa(){
-            try {
+           try {
            String ruta= "https://www.carroya.com/buscar/vehiculos/t4d2c239.do";
            URL url = new URL (ruta);
            BufferedReader reader = new BufferedReader (new InputStreamReader(url.openStream()));
